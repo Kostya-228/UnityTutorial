@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class PlayerLogic : MonoBehaviour
 {
-    int battery_count = 0;
-    int battery_max = 4;
-
     [SerializeField]
     UI ui;
+
+    int battery_count = 0;
+    int battery_max = 4;
+    bool is_target_counted = false;
 
     public void CollectBattery()
     {
@@ -22,6 +23,14 @@ public class PlayerLogic : MonoBehaviour
     public bool IsFullBattery()
     {
         return battery_count == battery_max;
-       
+    }
+
+    public void Target()
+    {
+        if (!is_target_counted)
+        {
+            CollectBattery();
+            is_target_counted = true;
+        }
     }
 }
