@@ -9,6 +9,10 @@ public class CocountLauncher : MonoBehaviour
     int throwForce = 40;
     [SerializeField]
     UI ui;
+    [SerializeField]
+    AudioClip throw_sound;
+    [SerializeField]
+    AudioSource source;
 
     public void Update()
     {
@@ -17,6 +21,8 @@ public class CocountLauncher : MonoBehaviour
             var obj = Instantiate(cocunt, transform.position, transform.rotation);
             obj.GetComponent<Rigidbody>().velocity = transform.TransformDirection(new Vector3(0, 0, throwForce));
             ui.ShowHint("Огонь))");
+            source.clip = throw_sound;
+            source.Play();
         }
     }
 }
