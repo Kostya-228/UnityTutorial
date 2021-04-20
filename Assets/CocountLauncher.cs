@@ -7,6 +7,8 @@ public class CocountLauncher : MonoBehaviour
     public GameObject cocunt;
     [SerializeField]
     int throwForce = 40;
+    [SerializeField]
+    UI ui;
 
     public void Update()
     {
@@ -14,6 +16,7 @@ public class CocountLauncher : MonoBehaviour
         {
             var obj = Instantiate(cocunt, transform.position, transform.rotation);
             obj.GetComponent<Rigidbody>().velocity = transform.TransformDirection(new Vector3(0, 0, throwForce));
+            ui.ShowHint("Огонь))");
         }
     }
 }
