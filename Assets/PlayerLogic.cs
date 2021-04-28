@@ -6,10 +6,12 @@ public class PlayerLogic : MonoBehaviour
 {
     [SerializeField]
     UI ui;
+    [SerializeField]
+    GameObject batteryByShoot;
 
     int battery_count = 0;
     int battery_max = 4;
-    bool is_target_counted = false;
+    int target_count = 0;
 
     public void CollectBattery()
     {
@@ -31,10 +33,11 @@ public class PlayerLogic : MonoBehaviour
 
     public void Target()
     {
-        if (!is_target_counted)
+        target_count++;
+        if (target_count == 3)
         {
-            CollectBattery();
-            is_target_counted = true;
+            batteryByShoot.SetActive(true);
+            ui.ShowHint("батарейка разблокирована");
         }
     }
 }
