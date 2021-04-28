@@ -17,6 +17,10 @@ public class PlayerLogic : MonoBehaviour
         {
             battery_count++;
             ui.ShowProgress((float)battery_count / battery_max);
+            if (battery_count != battery_max)
+                ui.ShowHint($"не хватает {battery_max - battery_count} батарейки для открытия двери");
+            else
+                ui.ShowHint($"батарейки собраны!");
         }
     }
 
