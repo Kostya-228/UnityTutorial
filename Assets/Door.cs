@@ -9,6 +9,8 @@ public class Door : MonoBehaviour
     [SerializeField]
     UI ui;
     [SerializeField]
+    AudioClip sound;
+    [SerializeField]
     float trigger_distanse = 3;
 
     bool in_zone = false;
@@ -58,8 +60,12 @@ public class Door : MonoBehaviour
         if (other.tag != "Player")
             return;
         var player = other.GetComponent<PlayerLogic>();
-        if (player.IsFullBattery())
+        if (player.IsFullBattery()) {
             animation.Play("open");
+            var source = GetComponent<AudioSource>();
+            source.clip = sound;
+            source.Play();
+        }
         else
             ui.ShowHint("Не достаточно заряда батареи. Соберите батарейки, чтобы открыть дверь");
     }
@@ -69,7 +75,11 @@ public class Door : MonoBehaviour
         if (other.tag != "Player")
             return;
         var player = other.GetComponent<PlayerLogic>();
-        if (player.IsFullBattery())
+        if (player.IsFullBattery()) {
             animation.Play("close");
+            var source = GetComponent<AudioSource>();
+            source.clip = sound;
+            source.Play();
+        }
     }
 }

@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerLogic : MonoBehaviour
 {
     [SerializeField]
+    AudioClip sound;
+    [SerializeField]
     UI ui;
     [SerializeField]
     GameObject batteryByShoot;
@@ -17,6 +19,9 @@ public class PlayerLogic : MonoBehaviour
     {
         if (battery_count < battery_max)
         {
+            var source = GetComponent<AudioSource>();
+            source.clip = sound;
+            source.Play();
             battery_count++;
             ui.ShowProgress((float)battery_count / battery_max);
             if (battery_count != battery_max)
